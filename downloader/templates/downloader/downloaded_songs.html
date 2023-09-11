@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloaded Songs</title>
+</head>
+<body>
+    <h1>Downloaded Songs</h1>
+    <ul>
+        {% for song in songs %}
+            <li>
+                <strong>Title:</strong> {{ song.title }}<br>
+                <strong>URL:</strong> <a href="{{ song.url }}">{{ song.url }}</a><br>
+                <strong>Downloaded File:</strong> <a href="{% url 'dl_song' path=song.file.url %}">Download</a><br>
+                <strong>Timestamp:</strong> {{ song.timestamp }}
+            </li>
+        {% empty %}
+            <p>No songs have been downloaded yet.</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+
